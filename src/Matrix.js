@@ -1,20 +1,21 @@
 const Matrix = (props) => {
   const columns = props.columns;
   const rows = props.rows;
-  const currentColumn = props.current.column;
-  const currentRow = props.current.row;
+  const currentColumn = +props.current.column;
+  const currentRow = +props.current.row;
+  console.log(`${currentColumn},${currentRow}`);
   const _array = (n) => {
     return [...Array(10).keys()];
   };
   const tableHeader = _array(columns + 1).map((i) => {
     if (i) {
       return (
-        <td className="header" key={`${i}c`}>
+        <td className="header" key={`${i}ch`}>
           {i.toString().padStart(5, "     ")}
         </td>
       );
     } else {
-      return <td key={"0c"}></td>;
+      return <td key={"0ch"}></td>;
     }
   });
   const tableRows = _array(rows + 1)
@@ -24,12 +25,12 @@ const Matrix = (props) => {
         if (c) {
           if (currentColumn === c && currentRow === r) {
             return (
-              <td className="active" key={`${c}${r}`}>
+              <td className="active" key={`${c}${r}c`}>
                 {(c * r).toString().padStart(5, "     ")}
               </td>
             );
           } else {
-            return <td key={`${c}${r}`}>{c * r}</td>;
+            return <td key={`${c}${r}c`}>{c * r}</td>;
           }
         } else {
           return (
@@ -39,11 +40,13 @@ const Matrix = (props) => {
           );
         }
       });
-      return <tr key={`${r}`}>{tableColumns}</tr>;
+      return <tr key={`${r}r`}>{tableColumns}</tr>;
     });
   return (
     <table>
-      <thead>{tableHeader}</thead>
+      <thead>
+        <tr>{tableHeader}</tr>
+      </thead>
       <tbody>{tableRows}</tbody>
     </table>
   );
