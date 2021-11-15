@@ -1,0 +1,13 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+td.active {
+  background-color: yellow;
+}
+td.header {
+  border-bottom: 5px solid black;
+}
+td.row {
+  border-right: 5px solid black;
+}
